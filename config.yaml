@@ -1,0 +1,51 @@
+data:
+  raw_data_path: "data/raw/raw_data.xlsx"
+  processed_data_path: "data/processed/processed_data.csv"
+  
+  features:
+    numeric:
+      - word_freq_zipf
+      - unique_letter_ratio
+      - rare_letter_count
+      - vowel_count
+      - days_since_start
+      - hard_mode_ratio
+      - hard_ratio_rolling
+      - hard_ratio_trend
+    
+    categorical:
+      - has_repeated_letters
+      - common_start
+      - day_of_week
+      - is_weekend
+      - month
+      - seasonal_phase
+    
+    target:
+      - attempts_1
+      - attempts_2
+      - attempts_3
+      - attempts_4
+      - attempts_5
+      - attempts_6
+      - attempts_7_or_more
+
+model:
+  sequence_length: 7
+  embedding_dim: 100
+  hidden_size: 64
+  num_layers: 1
+  dropout: 0.2
+  
+training:
+  batch_size: 64
+  num_epochs: 200
+  learning_rate: 0.001
+  patience: 20
+  device: "cuda"
+  
+paths:
+  outputs: "outputs/"
+  figures: "outputs/figures/"
+  models: "outputs/models/"
+  logs: "outputs/logs/"
